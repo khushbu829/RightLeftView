@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visible walls from right and left view</title>
+</head>
+
+<body>
+    <input id="length" type="text" size="50">
+    <input onclick="count()" type="button" value="Count">
+    <h3>Right view : </h3>
+    <p id="lv"></p>
+    <h3>Left view : </h3>
+    <p id="rv"></p>
+    <script>
+        var temp;
+        var lvarr = [];
+        var rvarr = [];
+        function count() {
+            num = document.getElementById("length").value;
+            num = num.split("#");
+            num = num.map(str => {
+                return Number(str);
+            });
+            //left view
+            temp = num[0];
+            lvarr.push(temp);
+            for (i = 0; i <= num.length; i++) {
+                if (num[i + 1] > temp) {
+                    temp = num[i + 1];
+                    console.log(temp);
+                    lvarr.push(temp);
+                }
+            }
+            // console.log(lvarr);
+            // right view
+            num.reverse();
+            temp = num[0];
+            rvarr.push(temp);
+            for (i = 0; i <= num.length; i++) {
+                if (num[i + 1] > temp) {
+                    temp = num[i + 1];
+                    console.log(temp);
+                    rvarr.push(temp);
+                }
+            }
+            // console.log(rvarr);
+            document.getElementById("lv").innerText = "Visible walls : " + lvarr + " and No. of walls : " + lvarr.length;
+            document.getElementById("rv").innerText = "Visible walls : " + rvarr + " and No. of walls : " + rvarr.length;
+        }
+    </script>
+</body>
+
+</html>
